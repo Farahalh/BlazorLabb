@@ -1,0 +1,39 @@
+﻿@page "/registerUser"
+@rendermode InteractiveServer
+
+<PageTitle>Register User</PageTitle>
+
+<div class="card p-4">
+    <h1>Register User</h1>
+
+    <div class="d-flex flex-column mb-3 pt-4">
+
+        <form class="row g-3">
+            <div class="col-md-6">
+                <label for="inputName4" class="form-label">Name</label>
+                <input type="text" class="form-control" id="inputName4">
+            </div>
+            <div class="col-md-6">
+                <label for="inputUserName4" class="form-label">User Name</label>
+                <input type="text" class="form-control" id="inputUserName4">
+            </div>
+            <div class="col-md-6">
+                <label for="inputEmail4" class="form-label">Email</label>
+                <input type="email" class="form-control" id="inputEmail4">
+            </div>
+
+            <div class="col-md-6">
+                <label for="inputPassword4" class="form-label">Password</label>
+                <input type="password" class="form-control" id="inputPassword4" @bind-="userMessage">
+            </div>
+
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary" @onclick="RegisterNewUser">Register</button>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+
+<p role="status">Message: @userMessage</p>
