@@ -1,12 +1,16 @@
+using Microsoft.AspNetCore.Components.Forms;
+
 namespace BlazorLabb.Components.Pages
 {
     public partial class RegisterUser
     {
-        private string userMessage = "";
+        Person Person = new Person();
 
-        private void RegisterNewUser()
+        string? SubmitResult;
+
+        void FormSubmitted()
         {
-            userMessage = "User registration was successful!";
+            SubmitResult = "Success - form is valid";
         }
     }
 }
