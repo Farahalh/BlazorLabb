@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BlazorLabb
+namespace BlazorLabb.Model
 {
     public class Person : IPerson
     {
+        public int Id { get; set; }
+
         [Required(ErrorMessage = "Name is required.")]
         public string Name { get; set; }
 
@@ -18,17 +20,22 @@ namespace BlazorLabb
         [MinLength(4, ErrorMessage = "Password must be at least 4 characters long.")]
         public string Password { get; set; }
 
+        public Company company { get; set; }
+
+        public Address adress { get; set; }
+
         public Person()
         {
 
         }
 
-        public Person(string name, string userName, string email, string password)
-        {
-            Name = name;
-            UserName = userName;
-            Email = email;
-            Password = password;
-        }
+        //public Person(int id, string name, string userName, string email, string password)
+        //{
+        //    Id = id;
+        //    Name = name;
+        //    UserName = userName;
+        //    Email = email;
+        //    Password = password;
+        //}
     }
 }
