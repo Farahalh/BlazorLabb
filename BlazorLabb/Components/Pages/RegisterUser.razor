@@ -5,36 +5,87 @@
 
 <div class="card p-4">
     <h1>Register User</h1>
+    @* <p>@jsonPersonPosted</p> *@
 
-    <div class="d-flex flex-column mb-3 pt-4">
-        <EditForm Model=@Person OnValidSubmit="FormSubmitted">
-            <DataAnnotationsValidator />
-            <div class="row g-3">
-                <div class="col-md-6">
-                    <label for="inputName4" class="form-label">Name</label>
-                    <InputText @bind-Value=Person.Name class="form-control" />
-                </div>
-                <div class="col-md-6">
-                    <label for="inputUserName4" class="form-label">User Name</label>
-                    <InputText @bind-Value=Person.UserName class="form-control" />
-                </div>
-                <div class="col-md-6">
-                    <label for="inputEmail4" class="form-label">Email</label>
-                    <InputText @bind-Value=Person.Email class="form-control" />
-                </div>
+    @if (formVisible)
+    {
+        <div class="d-flex flex-column mb-3 pt-4">
+            <EditForm Model=@Person OnValidSubmit="FormSubmitted">
+                <DataAnnotationsValidator />
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="inputName4" class="form-label">Name</label>
+                        <InputText @bind-Value=Person.Name class="form-control" id="Name" />
+                        <ValidationMessage For=@(() => Person.Name) />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputUserName4" class="form-label">User Name</label>
+                        <InputText @bind-Value=Person.UserName class="form-control" id="UserName" />
+                        <ValidationMessage For=@(() => Person.UserName) />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputEmail4" class="form-label">Email</label>
+                        <InputText @bind-Value=Person.Email class="form-control" id="Email" />
+                        <ValidationMessage For=@(() => Person.Email) />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputPassword4" class="form-label">Password</label>
+                        <InputText @bind-Value=Person.Password class="form-control" id="Password" type="password" />
+                        <ValidationMessage For=@(() => Person.Password) />
+                    </div>
 
-                <div class="col-md-6">
-                    <label for="inputPassword4" class="form-label">Password</label>
-                    <InputText @bind-Value=Person.Password class="form-control" />
-                </div>
+                    <div class="col-12">
+                        <h4>Address Information</h4>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputStreet" class="form-label">Street Name</label>
+                        <InputText @bind-Value=Person.adress.StreetName class="form-control" id="StreetName" />
+                        <ValidationMessage For=@(() => Person.adress.StreetName) />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputCity" class="form-label">City</label>
+                        <InputText @bind-Value=Person.adress.City class="form-control" id="City" />
+                        <ValidationMessage For=@(() => Person.adress.City) />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputZipcode" class="form-label">Zipcode</label>
+                        <InputText @bind-Value=Person.adress.Zipcode class="form-control" id="Zipcode" />
+                        <ValidationMessage For=@(() => Person.adress.Zipcode) />
+                    </div>
 
-                <div class="col-12">
-                    <button type="submit" class="btn btn-primary" value="Save">Register</button>
-                </div>
-            </div>
-        </EditForm>
-    </div>
+                    <div class="col-12">
+                        <h4>Company Information</h4>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputCompanyName" class="form-label">Company Name</label>
+                        <InputText @bind-Value=Person.company.CompanyName class="form-control" id="CompanyName" />
+                        <ValidationMessage For=@(() => Person.company.CompanyName) />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputCatchphrase" class="form-label">Catchphrase</label>
+                        <InputText @bind-Value=Person.company.Catchphrase class="form-control" id="Catchphrase" />
+                        <ValidationMessage For=@(() => Person.company.Catchphrase) />
+                    </div>
 
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary" value="Save">Register</button>
+                    </div>
+                </div>
+            </EditForm>
+        </div>
+    }
+    else if (!string.IsNullOrEmpty(Person.Name))
+    {
+        <ul>
+            <li><strong>Name:</strong> @Person.Name</li>
+            <li><strong>User Name:</strong> @Person.UserName</li>
+            <li><strong>Email:</strong> @Person.Email</li>
+            <li><strong>Password:</strong> ****</li>
+            <li><strong>Street Name:</strong> @Person.adress.StreetName</li>
+            <li><strong>City:</strong> @Person.adress.City</li>
+            <li><strong>Zipcode:</strong> @Person.adress.Zipcode</li>
+            <li><strong>Company Name:</strong> @Person.company.CompanyName</li>
+            <li><strong>Catchphrase:</strong> @Person.company.Catchphrase</li>
+        </ul>
+    }
 </div>
-
-<p role="status">Message: @SubmitResult</p>
