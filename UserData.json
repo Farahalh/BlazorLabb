@@ -1,0 +1,162 @@
+[
+  {
+    "Id": 1,
+    "Name": "John Doe",
+    "UserName": "johndoe",
+    "Email": "johndoe@example.com",
+    "Password": "password123",
+    "Company": {
+      "CompanyName": "Doe Enterprises",
+      "Catchphrase": "Innovation for a Better World"
+    },
+    "Address": {
+      "StreetName": "123 Maple St",
+      "City": "Springfield",
+      "Zipcode": "12345"
+    }
+  },
+  {
+    "Id": 2,
+    "Name": "Jane Smith",
+    "UserName": "janesmith",
+    "Email": "janesmith@example.com",
+    "Password": "securePass",
+    "Company": {
+      "CompanyName": "Smith Solutions",
+      "Catchphrase": "Your Partner in Success"
+    },
+    "Address": {
+      "StreetName": "456 Oak Ave",
+      "City": "Riverside",
+      "Zipcode": "67890"
+    }
+  },
+  {
+    "Id": 3,
+    "Name": "Alice Johnson",
+    "UserName": "alicej",
+    "Email": "alicej@example.com",
+    "Password": "aliceSecure",
+    "Company": {
+      "CompanyName": "Johnson Industries",
+      "Catchphrase": "Quality Above All"
+    },
+    "Address": {
+      "StreetName": "789 Pine Rd",
+      "City": "Fairview",
+      "Zipcode": "11223"
+    }
+  },
+  {
+    "Id": 4,
+    "Name": "Bob Brown",
+    "UserName": "bobbrown",
+    "Email": "bobbrown@example.com",
+    "Password": "brownbob123",
+    "Company": {
+      "CompanyName": "Brown & Co",
+      "Catchphrase": "Bringing Ideas to Life"
+    },
+    "Address": {
+      "StreetName": "321 Birch Blvd",
+      "City": "Lakewood",
+      "Zipcode": "44556"
+    }
+  },
+  {
+    "Id": 5,
+    "Name": "Charlie Davis",
+    "UserName": "charlied",
+    "Email": "charlied@example.com",
+    "Password": "charliedav",
+    "Company": {
+      "CompanyName": "Davis Corp",
+      "Catchphrase": "Leading the Way"
+    },
+    "Address": {
+      "StreetName": "654 Cedar Dr",
+      "City": "Hillcrest",
+      "Zipcode": "77889"
+    }
+  },
+  {
+    "Id": 6,
+    "Name": "Diana Miller",
+    "UserName": "dianam",
+    "Email": "dianam@example.com",
+    "Password": "millerDiana",
+    "Company": {
+      "CompanyName": "Miller Dynamics",
+      "Catchphrase": "Driven by Excellence"
+    },
+    "Address": {
+      "StreetName": "987 Elm St",
+      "City": "Greenfield",
+      "Zipcode": "33445"
+    }
+  },
+  {
+    "Id": 7,
+    "Name": "Evan Taylor",
+    "UserName": "evant",
+    "Email": "evant@example.com",
+    "Password": "taylorSecure",
+    "Company": {
+      "CompanyName": "Taylor Innovations",
+      "Catchphrase": "Shaping the Future"
+    },
+    "Address": {
+      "StreetName": "159 Willow Way",
+      "City": "Brookside",
+      "Zipcode": "55667"
+    }
+  },
+  {
+    "Id": 8,
+    "Name": "Fiona Clark",
+    "UserName": "fionac",
+    "Email": "fionac@example.com",
+    "Password": "clarkPass",
+    "Company": {
+      "CompanyName": "Clark Solutions",
+      "Catchphrase": "Your Vision, Our Mission"
+    },
+    "Address": {
+      "StreetName": "753 Palm Ln",
+      "City": "Sunnyvale",
+      "Zipcode": "66778"
+    }
+  },
+  {
+    "Id": 9,
+    "Name": "George Lee",
+    "UserName": "georgelee",
+    "Email": "georgelee@example.com",
+    "Password": "leePass",
+    "Company": {
+      "CompanyName": "Lee Consulting",
+      "Catchphrase": "Solutions for Success"
+    },
+    "Address": {
+      "StreetName": "852 Spruce Ct",
+      "City": "Lakeside",
+      "Zipcode": "88990"
+    }
+  },
+  {
+    "Id": 10,
+    "Name": "Hannah Wilson",
+    "UserName": "hannahw",
+    "Email": "hannahw@example.com",
+    "Password": "wilson123",
+    "Company": {
+      "CompanyName": "Wilson Worldwide",
+      "Catchphrase": "Global Reach, Local Touch"
+    },
+    "Address": {
+      "StreetName": "951 Redwood St",
+      "City": "Shady Grove",
+      "Zipcode": "99001"
+    }
+  }
+]
