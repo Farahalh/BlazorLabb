@@ -1,0 +1,42 @@
+﻿@page "/usersPage"
+@using System.Text.Json
+@using BlazorLabb.Services
+@attribute [StreamRendering]
+@inject BlazorLabb.Services.UserService UserService
+
+<PageTitle>Users Page</PageTitle>
+
+<h1>Registered Users</h1>
+
+@if (users == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Company Name</th>
+                <th>Catchphrase</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in users)
+            {
+                // TODO: Find right path for getting data of company and address
+                <tr>
+                    <td>@user.Name</td>
+                    <td>@user.Email</td>
+                    <td>@user.Password</td>
+                    <td>@user.CompanyName</td>
+                    <td>@user.Catchphrase</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
