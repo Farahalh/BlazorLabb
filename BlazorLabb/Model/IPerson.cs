@@ -2,12 +2,10 @@
 {
     public interface IPerson
     {
-        int Id { get; set; }
+        // TODO: Can the interface be extended and nested to include compnay and address?
         string Name { get; set; }
         string UserName { get; set; }
-
         string Email { get; set; }
-
         string Password { get; set; }
     }
 }

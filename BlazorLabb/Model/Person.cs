@@ -4,8 +4,6 @@ namespace BlazorLabb.Model
 {
     public class Person : IPerson
     {
-        public int Id { get; set; }
-
         [Required(ErrorMessage = "Name is required.")]
         public string Name { get; set; }
 
@@ -20,8 +18,14 @@ namespace BlazorLabb.Model
         [MinLength(4, ErrorMessage = "Password must be at least 4 characters long.")]
         public string Password { get; set; }
 
+
+        //public string CompanyName { get; set; }
+        //public string Catchphrase { get; set; }
+
+        [Required]
         public Company company { get; set; }
 
+        [Required]
         public Address adress { get; set; }
 
         public Person()
