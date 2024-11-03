@@ -1,14 +1,21 @@
 ﻿@page "/usersPage"
 @using System.Text.Json
 @using BlazorLabb.Services
-@attribute [StreamRendering]
-@inject BlazorLabb.Services.UserService UserService
+@inject BlazorLabb.Services.UserDataService UserService
+
+@* Summary:
+   The UsersPage component displays a list of registered users in a table format, loading data
+   from a JSON file managed by the UserService. When the page initializes, it checks if `_users`
+   is null and displays a loading message until data is available. The table lists each user's
+   name, email, and password, with placeholder columns for additional information that may be
+   uncommented in the future (e.g., company name and catchphrase).
+   *@
 
 <PageTitle>Users Page</PageTitle>
 
 <h1>Registered Users</h1>
 
-@if (users == null)
+@if (_registeredUsers == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -20,23 +27,21 @@ else
                 <th>Name</th>
                 <th>Email</th>
                 <th>Password</th>
-                <th>Company Name</th>
-                <th>Catchphrase</th>
+                @* <th>Company Name</th>
+            <th>Catchphrase</th> *@
             </tr>
         </thead>
         <tbody>
-            @foreach (var user in users)
+            @foreach (var user in _registeredUsers)
             {
-                // TODO: Find right path for getting data of company and address
                 <tr>
                     <td>@user.Name</td>
                     <td>@user.Email</td>
                     <td>@user.Password</td>
-                    <td>@user.CompanyName</td>
-                    <td>@user.Catchphrase</td>
+                    @* <td>@user.CompanyName</td>
+            <td>@user.Catchphrase</td> *@
                 </tr>
             }
         </tbody>
     </table>
 }
-
