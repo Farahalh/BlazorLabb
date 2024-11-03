@@ -13,7 +13,7 @@ namespace BlazorLabb
             builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents();
 
-            builder.Services.AddSingleton<UserService>();
+            builder.Services.AddScoped<UserDataService>();
 
             var app = builder.Build();
 
