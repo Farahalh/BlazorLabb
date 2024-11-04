@@ -4,10 +4,12 @@ using System.Text.Json;
 using System.Xml.Linq;
 
 /// <summary>
-/// Represents a registration form component for capturing user details.
-/// Initializes a new `EditFormPerson` object with placeholder address and company data.
-/// Handles form submission, updating the form's visibility status upon completion.
-/// Optionally, user data can be serialized to JSON for further processing (currently commented out).
+
+/// The RegisterUser component renders a registration form for capturing user details, including personal, address, and company information.
+/// It initializes a UserRegistration object (person) with placeholder address and company values.
+/// The form’s visibility is controlled by isFormVisible, which toggles off once the form is submitted.
+/// The OnFormSubmitted method handles form submission by hiding the form upon completion.
+/// This component allows users to enter and submit their information interactively, with dynamic visibility control.
 /// </summary>
 
 namespace BlazorLabb.Components.Pages
