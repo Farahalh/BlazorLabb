@@ -15,6 +15,9 @@
 
 <h1>Registered Users</h1>
 
+<button @onclick="FetchDataForFiveUser">Display five users</button>
+<button @onclick="FetchDataForAllUsers">Display all users</button>
+
 @if (_registeredUsers == null)
 {
     <p><em>Loading...</em></p>
@@ -27,8 +30,11 @@ else
                 <th>Name</th>
                 <th>Email</th>
                 <th>Password</th>
-                @* <th>Company Name</th>
-            <th>Catchphrase</th> *@
+                <th>Street</th>
+                <th>City</th>
+                <th>Zip Code</th>
+                <th>Company name</th>
+                <th>Catch phrase</th>
             </tr>
         </thead>
         <tbody>
@@ -38,8 +44,11 @@ else
                     <td>@user.Name</td>
                     <td>@user.Email</td>
                     <td>@user.Password</td>
-                    @* <td>@user.CompanyName</td>
-            <td>@user.Catchphrase</td> *@
+                    <td>@user.Address.StreetName</td>
+                    <td>@user.Address.City</td>
+                    <td>@user.Address.Zipcode</td>
+                    <td>@user.Company.CompanyName</td>
+                    <td>@user.Company.Catchphrase</td>
                 </tr>
             }
         </tbody>
