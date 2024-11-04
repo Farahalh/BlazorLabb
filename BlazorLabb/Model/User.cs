@@ -24,9 +24,5 @@
             Company = company;
             Address = address;
         }
-        public User()
-        {
-            
-        }
     }
 }
