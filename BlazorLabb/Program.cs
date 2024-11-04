@@ -1,5 +1,5 @@
 using BlazorLabb.Components;
-using BlazorLabb.Services;
+using BlazorLabb.Model;
 
 namespace BlazorLabb
 {
@@ -13,7 +13,7 @@ namespace BlazorLabb
             builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents();
 
-            builder.Services.AddScoped<UserDataService>();
+            builder.Services.AddScoped<UserData>();
 
             var app = builder.Build();
 
