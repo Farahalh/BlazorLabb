@@ -1,39 +1,26 @@
 using BlazorLabb.Model;
-using BlazorLabb.Services;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Routing.Constraints;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 /// <summary>
-/// Represents the UsersPage component, responsible for displaying and managing a list of users 
-/// within a Blazor application. This component retrieves user data from a JSON file upon 
-/// initialization and allows adding new users to the list, dynamically updating the JSON file. 
-/// The class uses the UserService to handle serialization and deserialization for persistent 
-/// storage of user data in "UserData.json".
+/// The `UsersPage` component loads and displays a list of registered users.
+/// Initializes `_registeredUsers` with data loaded asynchronously from a JSON file using `UserData`.
+/// Adds a delay to simulate data loading.
+/// This component provides a user interface to view registered users on initialization.
 /// </summary>
 
 namespace BlazorLabb.Components.Pages
 {
     public partial class UsersPage
     {
-        private List<User>? _registeredUsers;
-        private string fileName = "UserData.json";
+        private List<User> _registeredUsers = new List<User>();
+        private readonly UserData _userData = new UserData();
 
         protected override async Task OnInitializedAsync()
         {
             await Task.Delay(1000);
-            _registeredUsers = UserDataService.DeserializeUsersFromFile(fileName) ?? new List<User>();
+            _registeredUsers = await _userData.GetUsersAsync();
         }
-
-        private void AddUser(User newUser)
-        {
-            if (_registeredUsers == null)
-            {
-                _registeredUsers = new List<User>();
-            }
-
-            _registeredUsers.Add(newUser);
-            UserDataService.SerializeUsersToFile(fileName, _registeredUsers);
-        }
-
     }
 }
