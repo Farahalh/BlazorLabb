@@ -1,7 +1,6 @@
 ﻿@page "/usersPage"
+@rendermode InteractiveServer
 @using System.Text.Json
-@using BlazorLabb.Services
-@inject BlazorLabb.Services.UserDataService UserService
 
 @* Summary:
    The UsersPage component displays a list of registered users in a table format, loading data
@@ -15,21 +14,33 @@
 
 <h1>Registered Users</h1>
 
-<button @onclick="FetchDataForFiveUser">Display five users</button>
-<button @onclick="FetchDataForAllUsers">Display all users</button>
-
 @if (_registeredUsers == null)
 {
     <p><em>Loading...</em></p>
 }
 else
 {
+   <div class="container my-3">
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <input type="text" class="form-control" @bind="searchTerm" @oninput="FilterBySearch" placeholder="Search by name" />
+        </div>
+        <div class="col-md-8 d-flex justify-content-end">
+            <button @onclick="DisplaySome" class="btn btn-primary me-2">Display five users</button>
+            <button @onclick="DisplayAll" class="btn btn-primary me-2">Display all users</button>
+            <button @onclick="OrderByName" class="btn btn-primary me-2">Order by Name</button>
+            <button @onclick="OrderedById" class="btn btn-primary">Order by Id</button>
+        </div>
+    </div>
+</div>
+
+
     <table class="table">
         <thead>
             <tr>
+                <th>Id</th>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Password</th>
                 <th>Street</th>
                 <th>City</th>
                 <th>Zip Code</th>
@@ -41,9 +52,9 @@ else
             @foreach (var user in _registeredUsers)
             {
                 <tr>
+                    <td>@user.Id</td>
                     <td>@user.Name</td>
                     <td>@user.Email</td>
-                    <td>@user.Password</td>
                     <td>@user.Address.StreetName</td>
                     <td>@user.Address.City</td>
                     <td>@user.Address.Zipcode</td>
