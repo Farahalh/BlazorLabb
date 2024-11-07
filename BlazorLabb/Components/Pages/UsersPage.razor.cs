@@ -1,26 +1,68 @@
 using BlazorLabb.Model;
 using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-
-/// <summary>
-/// The `UsersPage` component loads and displays a list of registered users.
-/// Initializes `_registeredUsers` with data loaded asynchronously from a JSON file using `UserData`.
-/// Adds a delay to simulate data loading.
-/// This component provides a user interface to view registered users on initialization.
-/// </summary>
 
 namespace BlazorLabb.Components.Pages
 {
     public partial class UsersPage
     {
         private List<User> _registeredUsers = new List<User>();
-        private readonly UserData _userData = new UserData();
+        private string searchTerm = "";
+        private readonly UserDataAccess _defaultUserDataAccess = new UserDataAccess();
+
+        [Parameter]
+        public int TotalUsersToDisplay { get; set; } = 5;
+
+        [Parameter]
+        public IUserDataAccess UserDataAccess { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
             await Task.Delay(1000);
-            _registeredUsers = await _userData.GetUsersAsync();
+            await LoadUserDataAsync();
+        }
+
+        private async Task LoadUserDataAsync()
+        {
+            UserDataAccess ??= _defaultUserDataAccess;
+            var allUsers = await UserDataAccess.GetUsersAsync();
+
+            if (allUsers == null || !allUsers.Any())
+            {
+                Console.WriteLine("No users retrieved.");
+                _registeredUsers = new List<User>();
+            }
+            else
+            {
+                _registeredUsers = allUsers.Take(TotalUsersToDisplay).ToList();
+            }
+        }
+
+        private void DisplayAll()
+        {
+            _registeredUsers = _registeredUsers.GetUsers(TotalUsersToDisplay);
+        }
+
+        private void DisplaySome()
+        {
+            _registeredUsers = _registeredUsers.GetSomeUsers(0, TotalUsersToDisplay);
+        }
+
+        private void OrderByName()
+        {
+            _registeredUsers = _registeredUsers.GetUsersOrderedByName();
+        }
+
+        private void OrderedById()
+        {
+            _registeredUsers = _registeredUsers.GetUsersOrderedById(TotalUsersToDisplay);
+        }
+
+        private void FilterBySearch()
+        {
+            _registeredUsers = _registeredUsers.GetUsersBySearch(searchTerm);
         }
     }
 }
