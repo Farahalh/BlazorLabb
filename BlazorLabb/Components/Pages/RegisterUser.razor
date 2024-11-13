@@ -45,8 +45,8 @@
                     </div>
                     <div class="col-md-6">
                         <label for="inputStreetName" class="form-label">Street Name</label>
-                        <InputText @bind-Value=person.Adress.StreetName class="form-control" id="StreetName" />
-                        <ValidationMessage For=@(() => person.Adress.StreetName) />
+                        <InputText @bind-Value=person.Adress.Street class="form-control" id="StreetName" />
+                        <ValidationMessage For=@(() => person.Adress.Street) />
                     </div>
                     <div class="col-md-6">
                         <label for="inputCity" class="form-label">City</label>
@@ -64,8 +64,8 @@
                     </div>
                     <div class="col-md-6">
                         <label for="inputCompanyName" class="form-label">Company Name</label>
-                        <InputText @bind-Value=person.Company.CompanyName class="form-control" id="CompanyName" />
-                        <ValidationMessage For=@(() => person.Company.CompanyName) />
+                        <InputText @bind-Value=person.Company.Name class="form-control" id="CompanyName" />
+                        <ValidationMessage For=@(() => person.Company.Name) />
                     </div>
                     <div class="col-md-6">
                         <label for="inputCatchphrase" class="form-label">Catchphrase</label>
@@ -87,10 +87,10 @@
             <li><strong>User Name:</strong> @person.UserName</li>
             <li><strong>Email:</strong> @person.Email</li>
             <li><strong>Password:</strong> ****</li>
-            <li><strong>Street Name:</strong> @person.Adress.StreetName</li>
+            <li><strong>Street Name:</strong> @person.Adress.Street</li>
             <li><strong>City:</strong> @person.Adress.City</li>
             <li><strong>Zipcode:</strong> @person.Adress.Zipcode</li>
-            <li><strong>Company Name:</strong> @person.Company.CompanyName</li>
+            <li><strong>Company Name:</strong> @person.Company.Name</li>
             <li><strong>Catchphrase:</strong> @person.Company.Catchphrase</li>
         </ul>
     }
