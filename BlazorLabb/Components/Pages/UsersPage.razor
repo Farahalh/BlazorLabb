@@ -14,51 +14,56 @@
 
 <h1>Registered Users</h1>
 
-@if (_registeredUsers == null)
+@if (users == null)
 {
     <p><em>Loading...</em></p>
 }
 else
 {
-   <div class="container my-3">
-    <div class="row mb-3">
-        <div class="col-md-4">
-            <input type="text" class="form-control" @bind="searchTerm" @oninput="FilterBySearch" placeholder="Search by name" />
-        </div>
-        <div class="col-md-8 d-flex justify-content-end">
-            <button @onclick="DisplaySome" class="btn btn-primary me-2">Display five users</button>
-            <button @onclick="DisplayAll" class="btn btn-primary me-2">Display all users</button>
-            <button @onclick="OrderByName" class="btn btn-primary me-2">Order by Name</button>
-            <button @onclick="OrderedById" class="btn btn-primary">Order by Id</button>
+    <div class="container my-3">
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <input type="text" class="form-control" @bind="searchTerm" @oninput="FilterBySearch" placeholder="Search by name" />
+            </div>
+            <div class="col-md-8 d-flex justify-content-end">
+                <button @onclick="DisplaySome" class="btn btn-primary me-2">Display five users</button>
+                <button @onclick="DisplayAll" class="btn btn-primary me-2">Display all users</button>
+                <button @onclick="OrderByName" class="btn btn-primary me-2">Order by Name</button>
+                <button @onclick="OrderedById" class="btn btn-primary">Order by Id</button>
+            </div>
         </div>
     </div>
-</div>
-
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
+                <th>Userame</th>
                 <th>Email</th>
+
                 <th>Street</th>
                 <th>City</th>
                 <th>Zip Code</th>
+
                 <th>Company name</th>
                 <th>Catch phrase</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var user in _registeredUsers)
+            @foreach (var user in users)
             {
                 <tr>
                     <td>@user.Id</td>
                     <td>@user.Name</td>
+                    <td>@user.Username</td>
                     <td>@user.Email</td>
-                    <td>@user.Address.StreetName</td>
+
+                    <td>@user.Address.Street</td>
                     <td>@user.Address.City</td>
                     <td>@user.Address.Zipcode</td>
-                    <td>@user.Company.CompanyName</td>
+
+                    <td>@user.Company.Name</td>
                     <td>@user.Company.Catchphrase</td>
                 </tr>
             }
