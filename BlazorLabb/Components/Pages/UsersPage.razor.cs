@@ -12,15 +12,24 @@ namespace BlazorLabb.Components.Pages
         private string searchTerm = "";
         private readonly UserDataAccess _defaultUserDataAccess = new UserDataAccess();
 
+        public List<User>? users;
+
+        public HttpClient httpClient = new HttpClient();
+
         [Parameter]
         public int TotalUsersToDisplay { get; set; } = 5;
 
         [Parameter]
-        public IUserDataAccess UserDataAccess { get; set; }
+        public IUserDataAccess? UserDataAccess { get; set; }
 
+        public async Task FetchApiData()
+        {
+            users = await httpClient.GetFromJsonAsync<List<User>>("https://jsonplaceholder.typicode.com/users");
+        }
         protected override async Task OnInitializedAsync()
         {
             await Task.Delay(1000);
+            await FetchApiData();
             await LoadUserDataAsync();
         }
 
