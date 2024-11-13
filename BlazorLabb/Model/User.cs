@@ -8,19 +8,17 @@
     {
         public int Id { get; set; }
         public string? Name { get; set; }
-        public string? UserName { get; set; }
+        public string? Username { get; set; }
         public string? Email { get; set; }
-        public string? Password { get; set; }
         public Company? Company { get; set; }
         public Address? Address { get; set; }
 
-        public User(int id, string name, string userName, string email, string password, Company company, Address address)
+        public User(int id, string name, string username, string email, Company company, Address address)
         {
             Id = id;
             Name = name;
-            UserName = userName;
+            Username = username;
             Email = email;
-            Password = password;
             Company = company;
             Address = address;
         }

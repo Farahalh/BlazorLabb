@@ -7,13 +7,13 @@ namespace BlazorLabb.Model
 {
     public class Address
     {
-        public string StreetName { get; set; }
+        public string Street { get; set; }
         public string City { get; set; }
         public string Zipcode { get; set; }
 
-        public Address(string streetName, string city, string zipcode)
+        public Address(string street, string city, string zipcode)
         {
-            StreetName = streetName;
+            Street = street;
             City = city;
             Zipcode = zipcode;
         }

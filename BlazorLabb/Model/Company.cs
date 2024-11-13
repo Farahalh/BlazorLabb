@@ -7,12 +7,12 @@ namespace BlazorLabb.Model
 {
     public class Company
     {
-        public string CompanyName { get; set; }
+        public string Name { get; set; }
         public string Catchphrase { get; set; }
 
-        public Company(string companyName, string catchphrase)
+        public Company(string name, string catchphrase)
         {
-            CompanyName = companyName;
+            Name = name;
             Catchphrase = catchphrase;
         }
     }
