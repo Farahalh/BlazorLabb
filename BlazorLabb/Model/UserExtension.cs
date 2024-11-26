@@ -7,11 +7,10 @@ namespace BlazorLabb.Model
 {
     public static class UserExtension
     {
-        public static List<User> GetUsers(this IEnumerable<User> users, int count)
+        public static List<User> GetAllUsers(this IEnumerable<User> users)
         {
-            return users.Take(count).ToList();
+            return users.GetFilteredUsers(0, users.Count()).ToList();
         }
-
 
         public static List<User> GetFilteredUsers(this IEnumerable<User> users, int startIndex, int count)
         {
@@ -34,10 +33,14 @@ namespace BlazorLabb.Model
             }
         }
 
-        public static List<User> GetSomeUsers(this IEnumerable<User> users, int startIndex, int count)
-        {
-            return users.Take(5).ToList();
-        }
+        //public static List<User> GetSomeUsers(this IEnumerable<User> users, int startIndex, int count)
+        //{
+        //    if (users == null)
+        //    {
+        //        throw new ArgumentNullException(nameof(users), "Users collection cannot be null.");
+        //    }
+        //    return users.Take(count).ToList();
+        //}
 
         public static List<User> GetUsersOrderedById(this IEnumerable<User> users, int count)
         {
@@ -48,12 +51,12 @@ namespace BlazorLabb.Model
         {
             return users.OrderBy(n => n.Name).ToList();
         }
+
         public static List<User> GetUsersBySearch(this IEnumerable<User> users, string searchTerm)
         {
             return users
-                .Where(user => user.Name?.ToLower().Contains(searchTerm.ToLower()) ?? false)
+                .Where(user => user.Name?.Contains(searchTerm, StringComparison.InvariantCultureIgnoreCase) ?? false)
                 .ToList();
         }
-
     }
 }
