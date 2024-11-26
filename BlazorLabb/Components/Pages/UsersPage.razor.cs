@@ -8,70 +8,87 @@ namespace BlazorLabb.Components.Pages
 {
     public partial class UsersPage
     {
-        private List<User> _registeredUsers = new List<User>();
-        private string searchTerm = "";
-        private readonly UserDataAccess _defaultUserDataAccess = new UserDataAccess();
-
-        public List<User>? users;
-
-        public HttpClient httpClient = new HttpClient();
-
-        [Parameter]
-        public int TotalUsersToDisplay { get; set; } = 5;
-
-        [Parameter]
+        private List<User> _users = new List<User>();
+        public int UserCount { get; set; }
         public IUserDataAccess? UserDataAccess { get; set; }
 
-        public async Task FetchApiData()
-        {
-            users = await httpClient.GetFromJsonAsync<List<User>>("https://jsonplaceholder.typicode.com/users");
-        }
+        //private List<User> _registeredUsers = new List<User>();
+        private string searchTerm = "";
+        //private readonly JsonUserDataAccess _defaultUserDataAccess = new JsonUserDataAccess();
+
+        ////public List<User>? users;
+
+        [Parameter]
+        public int AllUsersToDisplay { get; set; }
+
+        [Parameter]
+        public int OnLoadUsersToDisplay { get; set; }
+
+        [Parameter]
+        public IUserDataAccess? DataAccess { get; set; }
+
         protected override async Task OnInitializedAsync()
         {
             await Task.Delay(1000);
-            await FetchApiData();
+            UserDataAccess = UserDataAccessCreator.Create(DataSource.API, 10);
             await LoadUserDataAsync();
+            DisplaySome();
+        }
+
+        protected override void OnParametersSet()
+        {
+            DataAccess ??= new UserDataAccess(UserCount);
+
+            if (OnLoadUsersToDisplay < 1)
+            {
+                OnLoadUsersToDisplay = 5;
+            }
+
+            if (AllUsersToDisplay < 1)
+            {
+                AllUsersToDisplay = 10;
+            }
         }
 
         private async Task LoadUserDataAsync()
         {
-            UserDataAccess ??= _defaultUserDataAccess;
-            var allUsers = await UserDataAccess.GetUsersAsync();
+            try
+            {
+                DataAccess ??= new UserDataAccess(UserCount);
+                //var allUsers = await DataAccess.LoadUsersAsync();
 
-            if (allUsers == null || !allUsers.Any())
-            {
-                Console.WriteLine("No users retrieved.");
-                _registeredUsers = new List<User>();
+                //_users = allUsers?.Take(OnLoadUsersToDisplay).ToList() ?? new List<User>();
             }
-            else
+            catch (Exception ex)
             {
-                _registeredUsers = allUsers.Take(TotalUsersToDisplay).ToList();
+                Console.WriteLine($"Error loading user data: {ex.Message}");
+                _users = new List<User>();
             }
         }
 
         private void DisplayAll()
         {
-            _registeredUsers = _registeredUsers.GetUsers(TotalUsersToDisplay);
+            _users = DataAccess.Users;
         }
 
         private void DisplaySome()
         {
-            _registeredUsers = _registeredUsers.GetSomeUsers(0, TotalUsersToDisplay);
+            _users = DataAccess.Users.GetFilteredUsers(0, OnLoadUsersToDisplay);
         }
 
         private void OrderByName()
         {
-            _registeredUsers = _registeredUsers.GetUsersOrderedByName();
+            _users = DataAccess.Users.GetUsersOrderedByName();
         }
 
         private void OrderedById()
         {
-            _registeredUsers = _registeredUsers.GetUsersOrderedById(TotalUsersToDisplay);
+            _users = DataAccess.Users.GetUsersOrderedById(AllUsersToDisplay);
         }
 
         private void FilterBySearch()
         {
-            _registeredUsers = _registeredUsers.GetUsersBySearch(searchTerm);
+            _users = DataAccess.Users.GetUsersBySearch(searchTerm);
         }
     }
 }
