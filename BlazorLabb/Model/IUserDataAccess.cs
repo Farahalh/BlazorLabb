@@ -1,7 +1,10 @@
-﻿namespace BlazorLabb.Model
+﻿
+namespace BlazorLabb.Model
 {
     public interface IUserDataAccess
     {
-        Task<List<User>> GetUsersAsync();
+        List<User> Users {  get; }
+        public string DataSource { get; set; }
+        public Task LoadUsersAsync();
     }
 }
