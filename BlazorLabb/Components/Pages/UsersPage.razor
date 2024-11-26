@@ -14,16 +14,17 @@
 
 <h1>Registered Users</h1>
 
-@if (users == null)
+@if (_users == null)
 {
     <p><em>Loading...</em></p>
+
 }
 else
 {
     <div class="container my-3">
         <div class="row mb-3">
             <div class="col-md-4">
-                <input type="text" class="form-control" @bind="searchTerm" @oninput="FilterBySearch" placeholder="Search by name" />
+                <input type="search" class="form-control" @bind="searchTerm" @oninput="FilterBySearch" placeholder="Search by name" />
             </div>
             <div class="col-md-8 d-flex justify-content-end">
                 <button @onclick="DisplaySome" class="btn btn-primary me-2">Display five users</button>
@@ -41,28 +42,24 @@ else
                 <th>Name</th>
                 <th>Userame</th>
                 <th>Email</th>
-
                 <th>Street</th>
                 <th>City</th>
                 <th>Zip Code</th>
-
                 <th>Company name</th>
                 <th>Catch phrase</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var user in users)
+            @foreach (var user in _users)
             {
                 <tr>
                     <td>@user.Id</td>
                     <td>@user.Name</td>
                     <td>@user.Username</td>
                     <td>@user.Email</td>
-
                     <td>@user.Address.Street</td>
                     <td>@user.Address.City</td>
                     <td>@user.Address.Zipcode</td>
-
                     <td>@user.Company.Name</td>
                     <td>@user.Company.Catchphrase</td>
                 </tr>
