@@ -6,7 +6,7 @@ namespace BlazorLabb.Model
     {
         public List<User>? _users;
         public string DataSource { get; set; }
-        public int UserCount { get; set; }
+        public int UserCount { get; set; } 
 
         public List<User> Users
         {
@@ -24,7 +24,8 @@ namespace BlazorLabb.Model
         public APIUserDataAccess(int userCount)
         {
             DataSource = "API";
-            UserCount = 10;
+            UserCount = 10; //userCount
+            Users = new List<User>();
         }
 
         public async Task LoadUsersAsync()
