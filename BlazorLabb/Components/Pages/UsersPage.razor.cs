@@ -31,7 +31,7 @@ namespace BlazorLabb.Components.Pages
         {
             await Task.Delay(1000);
             UserDataAccess = UserDataAccessCreator.Create(DataSource.API, 10);
-            await LoadUserDataAsync();
+            await UserDataAccess.LoadUsersAsync();
             DisplaySome();
         }
 
@@ -50,22 +50,6 @@ namespace BlazorLabb.Components.Pages
             }
         }
 
-        private async Task LoadUserDataAsync()
-        {
-            try
-            {
-                DataAccess ??= new UserDataAccess(UserCount);
-                //var allUsers = await DataAccess.LoadUsersAsync();
-
-                //_users = allUsers?.Take(OnLoadUsersToDisplay).ToList() ?? new List<User>();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error loading user data: {ex.Message}");
-                _users = new List<User>();
-            }
-        }
-
         private void DisplayAll()
         {
             _users = DataAccess.Users;
@@ -73,7 +57,15 @@ namespace BlazorLabb.Components.Pages
 
         private void DisplaySome()
         {
-            _users = DataAccess.Users.GetFilteredUsers(0, OnLoadUsersToDisplay);
+            //try catch om null kör ej denna 
+            if (DataAccess == null)
+            {
+                throw new ArgumentException(nameof(DataAccess), "DataAccess is null");
+            }
+            else
+            {
+                _users = DataAccess?.Users.GetFilteredUsers(0, OnLoadUsersToDisplay);
+            }
         }
 
         private void OrderByName()
